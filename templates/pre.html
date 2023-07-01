@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admission Prediction for Higher Studies</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+   <!-- Libraries Stylesheet -->
+    <!-- <link href="lib/animate/animate.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/animate/animate.min.css') }}">
+    <!-- <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}">
+    <!-- <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+
+    <!-- Template Stylesheet -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="{{url_for('Home')}}" class="navbar-brand p-0">
+                    <h1  class="m-0">GAPrediction</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href="{{url_for('Home')}}" class="nav-item nav-link active">Home</a>
+                        <!-- <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="pre.html" class="nav-item nav-link">Service</a> -->
+                        <!-- <a href="project.html" class="nav-item nav-link">Project</a> -->
+                        <!-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="team.html" class="dropdown-item">Our Team</a>
+                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                                <a href="404.html" class="dropdown-item">404 Page</a>
+                            </div>
+                        </div> -->
+                        <a href=" " class="nav-item nav-link">Contact</a>
+                    </div>
+                    <!-- <a href="pre.html" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</a> -->
+                </div>
+            </nav>
+    
+        <div class="container-xxl bg-primary newsletter py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <!-- <p class="section-title text-white justify-content-center"><span></span>Newsletter<span></span></p> -->
+                        <h1 class="text-center text-white mb-4">Let's make a prediction</h1>
+                        <p class="text-white mb-4">ENTER THE DETAILS</p>
+                        <form action="{{ url_for('predict')}}"method="post">
+                        <div class="position-relative w-100 mt-3">
+                            <!-- <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your GRE Score" required="required" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your TOEFL Score" required="required" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your University Rating" required="required" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your SOP value" required="required" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your LOR value" required="required" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your CGPA" required="required" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter No of Research you done..." required="required" style="height: 48px;"> -->
+                            
+                                <input  class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="GRE" placeholder="Enter Your GRE Score" required="required">
+                                <span style="color: azure;">GRE SCORE</span>
+                            
+                            
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="TOEFL" placeholder="Enter Your TOEFL Score" required="required">
+                                <span style="color: azure;">TOEFL SCORE</span>
+                            
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="University Rating" placeholder="Enter Your University Rating" required="required">
+                                <span style="color: azure;">UNIVERSITY RATING</span>
+                            
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="SOP" placeholder="Enter Your SOP value" required="required">
+                                <span style="color: azure;">SOP VALUE</span>
+                            
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="LOR" placeholder="Enter Your LOR value" required="required">
+                                <span style="color: azure;">LOR VALUE</span>
+                            
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="CGPA" placeholder="Enter Your CGPA" required="required">
+                                <span style="color: azure;">CGPA</span>
+
+                                <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" name="Research" placeholder="Enter No of Research you done..." required="required">
+                                <span style="color: azure;">RESEARCH</span>
+
+                            
+                            <!-- <button type="submit" class="btn btn-primary btn-block btn-large"></button> -->
+                           
+                            
+                          
+                            
+                          </div>
+                          <button type="submit"><i class="fa fa-paper-plane text-primary fs-4">Predict</i></button>
+                          
+                         </form>
+                         <br>
+                         <br>
+                         <p class="text-center" style="color: aliceblue; size: 10px;" >"The chance to get admission for Higher Studies {{prediction_text}}%"</p>
+                        
+                       
+                        
+                
+                    </div> 
+                   
+                </div>
+            </div>
+        </div>
+        <!-- <button  type="submit" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Predict</button> -->
+   
+    </div>
+
+   
+<!-- <script src="lib/wow/wow.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+<!-- <script src="lib/easing/easing.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+<!-- <script src="lib/waypoints/waypoints.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+
+
+<!-- <script src="lib/counterup/counterup.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"> </script>
+<!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+<!-- <script src="lib/isotope/isotope.pkgd.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+<!-- <script src="lib/lightbox/js/lightbox.min.js"></script> -->
+<script  src="{{ url_for('static', filename='lib/lightbox/js/lightbox.min.js') }}"></script>
+
+<!-- Template Javascript -->
+<!-- <script src="js/main.js"></script> -->
+<script  src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>

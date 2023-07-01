@@ -1,708 +1,641 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UAV-Compatible" content="IE=edge">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Admission Prediction for Higher Studies</title>
-        <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-            *{
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Poppins',sans-serif;
-            }
-            
-            body{
-                background: linear-gradient(#040228 0% ,#f27b05 40%);
-                min-height: 100vh; 
-                
-                
-                overflow-x: hidden;
-                
-                
-            
-            }
-            header{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                padding: 30px 100px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                z-index: 100;
-            }
-            .logo{
-                color: #fff;
-                font-size: 2em;
-                cursor: default;
-            
-            }
-            .navbar a{
-                color: #fff;
-                text-decoration: none;
-                margin-left: 20px;
-                font-weight: 600;
-                padding: 6px 15px;
-                border-radius: 20px;
-            }
-            .navbar a:hover, .navbar a.active{
-                background: #e39621;
-            }
-            
-            .parallax{
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 70vh;
-            }
-            .parallax img{
-                position: absolute;
-                top:0;
-                left: 0;
-                width: 100%;
-                padding-bottom: 20px;
-                pointer-events: none;
-            }
-            
-            .sec{
-                position: relative;
-                padding: 100px;
-                background:linear-gradient(#fff,#f28807);
-               
-            }
-            .sec h2{
-                font-size: 3em;
-                color: #0f0e0e;
-                margin-bottom: 10px;
-            }
-            .sec h2:nth-child(2){
-                font-size: 2em;
-            }
-            .sec h2:nth-child(3){
-                font-size: 2em;
-            }
-            .sec p{
-                font-size: 1em;
-                color: #fff;
-                font-weight: 300;
-            }
-            .box{
-               
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 130vh;
-            
-            
-                border-radius: 8px;
-            }
-            .box::before{
-                content: '';
-                position: absolute;
-                top: -50%;
-                left: -50%;
-                /* width: 380px;
-                height: 420px; */
-                background: linear-gradient(0deg,transparent,
-                transparent,#e39621,#e39621,#e39621);
-                z-index: 1;
-                transform-origin: bottom right;
-                animation: animate 6s linear infinite;
-            }
-            @keyframes animate 
-            {
-                0%
-                {
-                    transform: rotate(0deg);
-            
-                }
-                100%
-                {
-                    transform: rotate(360deg);
-                }
-            }
-            .box form h2{
-                color: #0c0c0c;
-                font-weight: 500;
-                text-align: center;
-                letter-spacing: 0.1em;
-            }
-            .box form .inputBox{
-                position: relative;
-                width: 300px;
-                margin-top: 35px;
-            }
-            .box form .inputBox input{
-                position: relative;
-                width: 100%;
-                padding: 20px 10px 10px;
-                background: transparent;
-                outline: none;
-                border: none;
-                box-shadow: none;
-                color: #0b0b0b;
-                font-size: 1em;
-                letter-spacing: 0.05em;
-                transition: 0.5s;
-                z-index: 10;
-            }
-            .box form .inputBox span{
-                position: absolute;
-                left: 0;
-                padding: 20px 10px 10px;
-                pointer-events: none;
-                color: #030303;
-                font-size: 1em;
-                letter-spacing: 0.05em;
-                transition: 0.5s;
-            }
-            .box form .inputBox input:valid ~ span,
-            .box form .inputBox input:focus ~ span
-            {
-                color: #fff;
-                font-size: 0.75em;
-                transform: translateY(-34px);
-            }
-            .box form .inputBox i{
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 2px;
-                background: #fff;
-                border-radius: 4px;
-                overflow: hidden;
-                transition: 0.5s;
-                pointer-events: none;
-            }
-            .box form .inputBox input:valid ~ i,
-            .box form .inputBox input:focus ~ i{
-                height: 44px;
-            }
-            .box form button[type="submit"]
-            {
-                border: none;
-                outline: none;
-                padding: 9px 25px;
-                background:#fff;
-                cursor: pointer;
-                font-size: 0.9em;
-                border-radius: 4px;
-                font-weight: 600;
-                width: 100px;
-                margin-top: 10px;
-            }
-            .box form button[type="submit"]:active
-            {
-                opacity: 0.8;
-            }
-            .details{
-                margin: 0;
-                padding: 0;
-                min-height: 30vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-family: consolas;
-            
-            }
-            .details2{
-                margin: 0;
-                padding: 0;
-                min-height: 30vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-family: consolas;
-            
-            }
-            .details3{
-                margin: 0;
-                padding: 0;
-                min-height: 30vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-family: consolas;
-            
-            }
-            
-            .container{
-                width: 1000px;
-                position: relative;
-                display: flex;
-                justify-content: space-between;
-            }
-            .container .card{
-                position: relative;
-            }
-            .container .card .face{
-                width: 300px;
-                height: 200px;
-                transition: 0.5s;
-            }
-            .container .card .face.face1{
-                position: relative;
-                
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 20px;
-                height: 300px;
-                z-index: 1;
-                transform: translateY(100px);
-            }
-            .container .card:hover .face.face1{
-                background: #ef980b;
-                transform: translateY(0);
-            }
-            
-            .container .card .face.face1 .content{
-            
-                transition: 0.5s;
-            }
-            .container .card:hover .face.face1 .content{
-                opacity: 1;
-            }
-            .container .card .face.face1 .content img{
-                max-width: 100px;
-            
-            }
-            .container .card .face.face1 .content h3{
-                margin: 10px 0 0;
-                padding: 0;
-                color: #111010;
-                text-align: center;
-                
-            }
-            .container .card .face.face2{
-                position: relative;
-                background: #1c1c1c;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding:20px;
-                height: 300px;
-                top: 300px;
-                box-sizing: border-box;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-                transform: translateY(-200px);
-            }
-            .container .card .face.face2 .content p{
-                margin: 0;
-                padding: 0;
-            }
-            .f{
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Poppins',sans-serif;
-            }
-            .footer {
-                background-color: #414141;
-                width: 100%;
-                text-align: left;
-                font-family: sans-serif;
-                font-weight: bold;
-                font-size: 16px;
-                padding: 50px;
-                margin-top: 50px;
-              }
-              
-              .footer .footer-left,
-              .footer .footer-center,
-              .footer .footer-right {
-                display: inline-block;
-                vertical-align: top;
-              }
-              
-              
-              /* footer left*/
-              
-              .footer .footer-left {
-                width: 33%;
-                padding-right: 15px;
-              }
-              
-              .footer .about {
-                line-height: 20px;
-                color: #ffffff;
-                font-size: 13px;
-                font-weight: normal;
-                margin: 0;
-              }
-              
-              .footer .about span {
-                display: block;
-                color: #ffffff;
-                font-size: 14px;
-                font-weight: bold;
-                margin-bottom: 20px;
-              }
-              
-              .footer .icons {
-                margin-top: 25px;
-              }
-              
-              .footer .icons a {
-                display: inline-block;
-                width: 35px;
-                height: 35px;
-                cursor: pointer;
-                background-color: #33383b;
-                border-radius: 2px;
-                font-size: 20px;
-                color: #ffffff;
-                text-align: center;
-                line-height: 35px;
-                margin-right: 3px;
-                margin-bottom: 5px;
-              }
-              
-              
-              /* footer center*/
-              
-              .footer .footer-center {
-                width: 30%;
-              }
-              
-              .footer .footer-center i {
-                background-color: #33383b;
-                color: #ffffff;
-                font-size: 25px;
-                width: 38px;
-                height: 38px;
-                border-radius: 50%;
-                text-align: center;
-                line-height: 42px;
-                margin: 10px 15px;
-                vertical-align: middle;
-              }
-              
-              .footer .footer-center i.fa-envelope {
-                font-size: 17px;
-                line-height: 38px;
-              }
-              
-              .footer .footer-center p {
-                display: inline-block;
-                color: #ffffff;
-                vertical-align: middle;
-                margin: 0;
-              }
-              
-              .footer .footer-center p span {
-                display: block;
-                font-weight: normal;
-                font-size: 14px;
-                line-height: 2;
-              }
-              
-              .footer .footer-center p a {
-                color: #0099ff;
-                text-decoration: none;
-              }
-              
-              
-              /* footer right*/
-              
-              .footer .footer-right {
-                width: 35%;
-              }
-              
-              .footer h2 {
-                color: #ffffff;
-                font-size: 36px;
-                font-weight: normal;
-                margin: 0;
-              }
-              
-              .footer h2 span {
-                color: #0099ff;
-              }
-              
-              .footer .menu {
-                color: #ffffff;
-                margin: 20px 0 12px;
-                padding: 0;
-              }
-              
-              .footer .menu a {
-                display: inline-block;
-                line-height: 1.8;
-                text-decoration: none;
-                color: inherit;
-              }
-              
-              .footer .menu a:hover {
-                color: #0099ff;
-              }
-              
-              .footer .name {
-                color: #0099ff;
-                font-size: 14px;
-                font-weight: normal;
-                margin: 0;
-              }
-              
-              @media (max-width: 767px) {
-                .footer {
-                  font-size: 14px;
-                }
-                .footer .footer-left,
-                .footer .footer-center,
-                .footer .footer-right {
-                  display: block;
-                  width: 100%;
-                  margin-bottom: 40px;
-                  text-align: center;
-                }
-                .footer .footer-center i {
-                  margin-left: 0;
-                }
-              }
-            </style>
-        <link rel="stylesheet" href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    </head>
-    <body>
-        <header>
-            <h2 class="logo">GA-P</h2>
-            <nav class="navbar">
-                
+
+<head>
+    <meta charset="utf-8">
+    <title>Admission Prediction for Higher Studies</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <!-- <link href="img/favicon.ico" rel="icon"> -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Jost:wght@500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <!-- <link href="lib/animate/animate.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/animate/animate.min.css') }}">
+    <!-- <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}">
+    <!-- <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/lightbox/css/lightbox.min.css') }}">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+
+    <!-- Template Stylesheet -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0">GAPrediction</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto py-0">
+                        <a href=" " class="nav-item nav-link active">Home</a>
+                        <!-- <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="pre.html" class="nav-item nav-link">Service</a> -->
+                        <!-- <a href="project.html" class="nav-item nav-link">Project</a> -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="https://www.ets.org/gre.html" class="dropdown-item">GRE</a>
+                                <a href="https://www.ets.org/toefl.html" class="dropdown-item">TOEFL</a>
+                                <a href="https://www.ets.org/toeic.html" class="dropdown-item">TOEIC</a>
+                            </div>
+                        </div>
+                        <a href="{{url_for('contact')}}" class="nav-item nav-link">Contact</a> 
+                    </div>
+                    <a href="{{url_for('Predict')}}" class="btn rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Get Started</a>
+                </div>
             </nav>
-        </header>
-        <section class="parallax">
-            <img src="{{url_for('static',filename='stars.png')}}" id="stars">
-            <!-- <img src="png2.png" id="burjkhalifa"> -->
-            <img src="{{url_for('static',filename='build.png')}}" id="building">
-            <img src="{{url_for('static',filename='font4.png')}}" id="dubaitext">
-    
-        
 
-            
-        </section>
-       
-        <section class="sec">
-            <h2>Graduates Admission Prediction</h2>
-            <h2>Prediction of Graduates Admissions from an Indian perspective</h2>
-            <div class="details">
-            <div class="container">
-              <div class="card">
-                <div class="face face1">
-                    <div class="content">
-                        <img src="{{url_for('static',filename='gre.png')}}">
-                        <h3>GRE SCORE</h3>
-    
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content"></div>
-                    <p>The Graduate Record Examination, or GRE, is an important step in the graduate school or business school application process. The GRE is a multiple-choice, computer-based, standardized exam that is often required for admission to graduate programs and graduate business programs (MBA) globally.</p>
-                </div>
-
-              </div>
-              <div class="card">
-                <div class="face face1">
-                    <div class="content">
-                        <img src="{{url_for('static',filename='TOEFL.png')}}">
-                        <h3>TOEFL SCORE</h3>
-    
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content"></div>
-                    <p>The TOEFL iBT test helps you stand out confidently in English. It's the only test that measures all four academic English skills — reading, listening, speaking and writing — the way they are actually used in a classroom, so you can be confident you'll stand out to universities where it counts.</p>
-                </div>
-
-              </div>
-              <div class="card">
-                <div class="face face1">
-                    <div class="content">
-                        <img src="{{url_for('static',filename='university.png')}}">
-                        <h3>UNIVERSITY RATING</h3>
-    
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content"></div>
-                    <p>College and university rankings are the rankings of institutions in higher education using various factors, including research excellence, specialisation expertise, awards, graduate employment, and student perceptions. Learn more in: A Ranking Framework for Higher Education Institutions: A Students' Perspective.</p>
-                </div>
-
-              </div>
-              
-            </div>
-        </div>
-        <div class="details2">
-        <div class="container">
-            <div class="card">
-              <div class="face face1">
-                  <div class="content">
-                      <img src="{{url_for('static',filename='sop.png')}}">
-                      <!-- <h3>SOP</h3> -->
-  
-                  </div>
-              </div>
-              <div class="face face2">
-                  <div class="content"></div>
-                  <p>SOP specifies and hints to the reader about your interests. As most tertiary courses abroad offer you to choose your own coursework to an extent, mention in your interest in research in specific sections of the program indicates to the reader that you researched well about the course before applying. </p>
-              </div>
-
-            </div>
-            <div class="card">
-              <div class="face face1">
-                  <div class="content">
-                      <img src="{{url_for('static',filename='lor.png')}}">
-                      <!-- <h3>LOR</h3> -->
-  
-                  </div>
-              </div>
-              <div class="face face2">
-                  <div class="content"></div>
-                  <p>Letter of recommendation, is a letter that recommends a student, employee, colleague or co-worker. It is also called as a letter of reference or LOR in short. When issued to a student, this letter helps the admission committee to know and understand more about the applicant.</p>
-              </div>
-
-            </div>
-            <div class="card">
-              <div class="face face1">
-                  <div class="content">
-                      <img src="{{url_for('static',filename='cgpa.png')}}">
-                      <!-- <h3>CGPA</h3> -->
-  
-                  </div>
-              </div>
-              <div class="face face2">
-                  <div class="content"></div>
-                  <p>It is usually used to measure the overall academic performance of a student. CGPA is calculated by obtaining the mean of the GPA that a student is awarded every semester and is divided by the total number of credits. As per the CGPA system, certain grades are allotted.</p>
-              </div>
-
-            </div>
-            
-            
-          </div>
-        </div>
-        <div class="details3">
-            <div class="container">
-                <div class="card">
-                    <div class="face face1">
-                        <div class="content">
-                            <img src="{{url_for('static',filename='research.png')}}">
-                            <h3>RESEARCH</h3>
-        
+            <div class="container-xxl bg-primary hero-header">
+                <div class="container px-lg-5">
+                    <div class="row g-5 align-items-end">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="text-white mb-4 animated slideInDown">Graduates Admission Prediction</h1>
+                            <p class="text-white pb-3 animated slideInDown">Prediction of Graduates Admissions from an Indian perspective</p>
+                            <!-- <a href="" class="btn btn-secondary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a> -->
+                            <a href="{{url_for('Predict')}}" class="btn btn-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Get Started</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="{{url_for('static',filename='img/hero.png')}}" alt="">
                         </div>
                     </div>
-                    <div class="face face2">
-                        <div class="content"></div>
-                        <p>Research can inform decision-making in higher education by providing evidence-based recommendations for policies and practices that can improve student outcomes and enhance the overall quality of education. Research can also help identify areas of need and opportunities for innovation and improvement.</p>
-                    </div>
-      
-                  </div>
+                </div>
             </div>
         </div>
+        <!-- Navbar & Hero End -->
 
 
-
-            <div class="box">
-
-
-                <form action="{{ url_for('predict')}}"method="post">
-                    <h2>ENTER THE DETAILS</h2>
-                    <div class="inputBox">
-                        <input type="text" name="GRE" required="required">
-                        <span>GRE SCORE</span>
+        <!-- Feature Start -->
+        <!-- <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-4">
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
+                            <h5 class="mb-3">Digital Marketing</h5>
+                            <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
+                        </div>
                     </div>
-                    <div class="inputBox">
-                        <input type="text" name="TOEFL" required="required">
-                        <span>TOEFL SCORE</span>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <i class="fa fa-3x fa-search text-primary mb-4"></i>
+                            <h5 class="mb-3">SEO & Backlinks</h5>
+                            <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
+                        </div>
                     </div>
-                    <div class="inputBox">
-                        <input type="text" name="University Rating" required="required">
-                        <span>UNIVERSITY RATING</span>
+                    <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="feature-item bg-light rounded text-center p-4">
+                            <i class="fa fa-3x fa-laptop-code text-primary mb-4"></i>
+                            <h5 class="mb-3">Design & Development</h5>
+                            <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
+                        </div>
                     </div>
-                    <div class="inputBox">
-                        <input type="text" name="SOP" required="required">
-                        <span>SOP</span>
-                    </div>
-                    <div class="inputBox">
-                        <input type="text" name="LOR" required="required">
-                        <span>LOR</span>
-                    </div>
-                    <div class="inputBox">
-                        <input type="text" name="CGPA" required="required">
-                        <span>CGPA</span>
-                    </div>
-                    <div class="inputBox">
-                        <input type="text" name="Research" required="required">
-                        <span>RESEARCH</span>
-                    </div>
-                    <!-- <input type="submit" value="Predict"> -->
-                    <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-                </form>
-            <br>
-            <br>
-            {{ prediction_text }}
-
+                </div>
             </div>
-        </section>
-        <!-- footer -->
-        <footer class="footer">
-            <div class="footer-left col-md-4 col-sm-6">
-              <p class="about">
-                <span> About this Website</span> Eligibility Criteria to Study Abroad for Indian Students. What are the Requirements to Study Abroad: Students who are looking to pursue higher education abroad have to appear for language exams such as the IELTS, TOEFL and PTE and general exams such as SAT, GMAT, GRE and ACT to be eligible for admissions.
-                This Website will help who are going to study in abroad for higher education.This Website will Predict the chance of getting admission in abroad universities or colleges this might will help to the candidate to get admission in Abroad
-              </p>
-              <div class="icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-google-plus"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-              </div>
-            </div>
-            <div class="footer-center col-md-4 col-sm-6">
-              <div>
-                <i class="fa fa-map-marker"></i>
-                <p><span>Karpagam College of Engineering</span> Coimbatore,India</p>
-              </div>
-              <div>
-                <i class="fa fa-phone"></i>
-                <p> +919345773175</p>
-              </div>
-              <div>
-                <i class="fa fa-envelope"></i>
-                <p><a href="#">rahularumugam85@gmail.com</a></p>
-              </div>
-            </div>
-            <div class="footer-right col-md-4 col-sm-6">
-              <h2> GA<span>Prediction</span></h2>
-              <p class="menu">
-                <a href="#"> Home</a> |
-                <a href="#"> Popular Colleges</a> |
-                <a href="#">GRE Website</a> |
-                <a href="#">TOEFL Website</a> |
-              </p>
-              <p class="name"> GA Prediction &copy; RAHUL ARUMUGAM</p>
-            </div>
-          </footer>
+        </div> -->
+        <!-- Feature End -->
 
-            
-        <script> 
-            let dubaiText =document.getElementById('dubaitext');
-            let burjkhalifa=document.getElementById('burjkhalifa');
-            let stars=document.getElementById('stars');
-            let building=document.getElementById('building')
-            
-            
-            window.addEventListener('scroll',() => {
-                let value=window.scrollY;
-            
-                dubaiText.style.left=value*-2+'px';
-                // burjkhalifa.style.top=value*1+'px';
-                // building.style.bottom=value*2+'px';
-                // stars.style.top=value*1+'px'
-            })</script>
-    </body>
+
+        <!-- About Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <p class="section-title text-secondary">About Us<span></span></p>
+                        <h1 class="mb-5">Digital Refrence for Admission in Abroad for Indian perspective </h1>
+                        <p class="mb-4">Eligibility Criteria to Study Abroad for Indian Students.Students who are looking to pursue higher education abroad have to appear for language exams such as the IELTS, TOEFL and PTE and general exams such as SAT, GMAT, GRE and ACT to be eligible for admissions. This Website will help who are going to study in abroad for higher education.This Website will Predict the chance of getting admission in abroad universities or colleges this might will help to the candidate to get admission in Abroad</p>
+                        <div class="skill mb-4">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-2">No of Students going for PG in abroad</p>
+                                <p class="mb-2">75%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <!-- <div class="skill mb-4">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-2">No o</p>
+                                <p class="mb-2">90%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="skill mb-4">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-2">Design & Development</p>
+                                <p class="mb-2">95%</p>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div> -->
+                        <a href="https://www.google.com/search?q=reference+link+for+pg+courses+in+abroad&client=ms-android-vivo-rvo3&sxsrf=APwXEdd5OmgK8ZqJFsH5nYHLgHHxBbeXlQ%3A1688018758048&ei=Rh-dZLzLAsieseMPk72ggA8&oq=reference+link+for+pg+courses+in+ab&gs_lcp=ChNtb2JpbGUtZ3dzLXdpei1zZXJwEAEYADIHCCEQoAEQCjIHCCEQoAEQCjIHCCEQoAEQCjoKCAAQRxDWBBCwAzoHCCMQ6gIQJzoNCC4QxwEQ0QMQ6gIQJzoHCCMQigUQJzoICAAQigUQkQI6CwgAEIAEELEDEIMBOggILhCABBCxAzoFCC4QgAQ6BAgjECc6FgguEIAEEBQQhwIQsQMQgwEQxwEQ0QM6CwgAEIoFELEDEIMBOgoIABCKBRCxAxBDOgcILhCKBRBDOgcIABCKBRBDOgUIABCABDoICAAQgAQQsQM6CggAEIAEEEYQ_wE6BggAEBYQHjoICAAQFhAeEA86BQghEKABOggIIRAWEB4QHToECCEQFUoECEEYAFCBFVjlfGC-hgFoA3AAeACAAYQCiAHQJ5IBBzAuMTEuMTSYAQCgAQGgAQWwAQ_AAQHIAQg&sclient=mobile-gws-wiz-serp#fpstate=form_ad_n1s0p1" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3">Read More</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="{{url_for('static',filename='img/about.png')}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+        <!-- Facts Start
+        <div class="container-xxl bg-primary fact py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                        <i class="fa fa-certificate fa-3x text-secondary mb-3"></i>
+                        <h1 class="text-white mb-2" data-toggle="counter-up">1234</h1>
+                        <p class="text-white mb-0">Years Experience</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                        <i class="fa fa-users-cog fa-3x text-secondary mb-3"></i>
+                        <h1 class="text-white mb-2" data-toggle="counter-up">1234</h1>
+                        <p class="text-white mb-0">Team Members</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                        <i class="fa fa-users fa-3x text-secondary mb-3"></i>
+                        <h1 class="text-white mb-2" data-toggle="counter-up">1234</h1>
+                        <p class="text-white mb-0">Satisfied Clients</p>
+                    </div>
+                    <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                        <i class="fa fa-check fa-3x text-secondary mb-3"></i>
+                        <h1 class="text-white mb-2" data-toggle="counter-up">1234</h1>
+                        <p class="text-white mb-0">Compleate Projects</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Facts End -->
+
+
+        <!-- Service Start -->
+        <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>Requirements<span></span></p>
+                    <h1 class="text-center mb-5">These are the Requirements that will Predict our Process</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fas fa-school"style='font-size:36px'></i>
+                            </div>
+                            <h5 class="mb-3">UNIVERSITY RATING</h5>
+                            <p class="m-0">College and university rankings are the rankings of institutions in higher education using various factors, including research excellence, specialisation expertise, awards, graduate employment, and student perceptions. Learn more in: A Ranking Framework for Higher Education Institutions: A Students' Perspective.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="far fa-clock"style='font-size:36px;'></i>
+                            </div>
+                            <h5 class="mb-3">GRE SCORE</h5>
+                            <p class="m-0">The Graduate Record Examination, or GRE, is an important step in the graduate school or business school application process. The GRE is a multiple-choice, computer-based, standardized exam that is often required for admission to graduate programs and graduate business programs (MBA) globally.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fas fa-book-open"style='font-size:36px;'></i>
+                            </div>
+                            <h5 class="mb-3">TOEFL SCORE</h5>
+                            <p class="m-0">The TOEFL iBT test helps you stand out confidently in English. It's the only test that measures all four academic English skills — reading, listening, speaking and writing — the way they are actually used in a classroom, so you can be confident you'll stand out to universities where it counts.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fas fa-user-graduate"style='font-size:36px;'></i>
+                            </div>
+                            <h5 class="mb-3">CGPA</h5>
+                            <p class="m-0">It is usually used to measure the overall academic performance of a student. CGPA is calculated by obtaining the mean of the GPA that a student is awarded every semester and is divided by the total number of credits. As per the CGPA system, certain grades are allotted.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fas fa-book-reader"style='font-size:36px;'></i>
+                            </div>
+                            <h5 class="mb-3">RESEARCH</h5>
+                            <p class="m-0">Research can inform decision-making in higher education by providing evidence-based recommendations for policies and practices that can improve student outcomes and enhance the overall quality of education. Research can also help identify areas of need and opportunities for innovation and improvement.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="fas fa-mug-hot"style='font-size:36px;'></i>
+                            </div>
+                            <h5 class="mb-3">SOP RATING</h5>
+                            <p class="m-0">SOP specifies and hints to the reader about your interests. As most tertiary courses abroad offer you to choose your own coursework to an extent, mention in your interest in research in specific sections of the program indicates to the reader that you researched well about the course before applying.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item d-flex flex-column text-center rounded">
+                            <div class="service-icon flex-shrink-0">
+                                <i class="far fa-edit"style='font-size:36px;'></i>
+                            </div>
+                            <h5 class="mb-3">LOR RATING</h5>
+                            <p class="m-0">Letter of recommendation, is a letter that recommends a student, employee, colleague or co-worker. It is also called as a letter of reference or LOR in short. When issued to a student, this letter helps the admission committee to know and understand more about the applicant.</p>
+                            <a class="btn btn-square" href=""><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+
+
+        <!-- Newsletter Start -->
+        <!-- <div class="container-xxl bg-primary newsletter py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 text-center">
+                        <p class="section-title text-white justify-content-center"><span></span>Newsletter<span></span></p>
+                        <h1 class="text-center text-white mb-4">Stay Always In Touch</h1>
+                        <p class="text-white mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo</p>
+                        <div class="position-relative w-100 mt-3">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email" style="height: 48px;">
+                            <button type="button" ><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Newsletter End -->
+
+
+        <!-- Projects Start -->
+        <!-- <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>Our Projects<span></span></p>
+                    <h1 class="text-center mb-5">Recently Completed Projects</h1>
+                </div>
+                <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="col-12 text-center">
+                        <ul class="list-inline mb-5" id="portfolio-flters">
+                            <li class="mx-2 active" data-filter="*">All</li>
+                            <li class="mx-2" data-filter=".first">Web Design</li>
+                            <li class="mx-2" data-filter=".second">Graphic Design</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row g-4 portfolio-container">
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/portfolio-1.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-1.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
+                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/portfolio-2.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
+                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/portfolio-3.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-3.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
+                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/portfolio-4.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-4.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
+                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/portfolio-5.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-5.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
+                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/portfolio-6.jpg" alt="">
+                                <div class="portfolio-overlay">
+                                    <a class="btn btn-square btn-outline-light mx-1" href="img/portfolio-6.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-square btn-outline-light mx-1" href=""><i class="fa fa-link"></i></a>
+                                </div>
+                            </div>
+                            <div class="bg-light p-4">
+                                <p class="text-primary fw-medium mb-2">UI / UX Design</p>
+                                <h5 class="lh-base mb-0">Digital Agency Website Design And Development</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Projects End -->
+
+
+        <!-- Testimonial Start -->
+        <!-- <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <p class="section-title text-secondary justify-content-center"><span></span>Testimonial<span></span></p>
+                <h1 class="text-center mb-5">What Say Our Clients!</h1>
+                <div class="owl-carousel testimonial-carousel">
+                    <div class="testimonial-item bg-light rounded my-4">
+                        <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 65px; height: 65px;">
+                            <div class="ps-4">
+                                <h5 class="mb-1">Client Name</h5>
+                                <span>Profession</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-light rounded my-4">
+                        <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" style="width: 65px; height: 65px;">
+                            <div class="ps-4">
+                                <h5 class="mb-1">Client Name</h5>
+                                <span>Profession</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-light rounded my-4">
+                        <p class="fs-5"><i class="fa fa-quote-left fa-4x text-primary mt-n4 me-3"></i>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" style="width: 65px; height: 65px;">
+                            <div class="ps-4">
+                                <h5 class="mb-1">Client Name</h5>
+                                <span>Profession</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Testimonial End -->
+
+
+        <!-- Team Start -->
+        <!-- <div class="container-xxl py-5">
+            <div class="container py-5 px-lg-5">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title text-secondary justify-content-center"><span></span>Our Team<span></span></p>
+                    <h1 class="text-center mb-5">Our Team Members</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item bg-light rounded">
+                            <div class="text-center border-bottom p-4">
+                                <img class="img-fluid rounded-circle mb-4" src="img/team-1.jpg" alt="">
+                                <h5>John Doe</h5>
+                                <span>CEO & Founder</span>
+                            </div>
+                            <div class="d-flex justify-content-center p-4">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item bg-light rounded">
+                            <div class="text-center border-bottom p-4">
+                                <img class="img-fluid rounded-circle mb-4" src="img/team-2.jpg" alt="">
+                                <h5>Jessica Brown</h5>
+                                <span>Web Designer</span>
+                            </div>
+                            <div class="d-flex justify-content-center p-4">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item bg-light rounded">
+                            <div class="text-center border-bottom p-4">
+                                <img class="img-fluid rounded-circle mb-4" src="img/team-3.jpg" alt="">
+                                <h5>Tony Johnson</h5>
+                                <span>SEO Expert</span>
+                            </div>
+                            <div class="d-flex justify-content-center p-4">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Team End -->
+        
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <p class="section-title text-white h5 mb-4">Address<span></span></p>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>KCE,Coimbatore,India</p>
+                        <p><i class="fa fa-phone-alt me-3"></i>+919345773175</p>
+                        <p><i class="fa fa-envelope me-3"></i>rahularumugam85@gmail.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
+                        <a class="btn btn-link" href="{{url_for('Home')}}">About Us</a>
+                        <a class="btn btn-link" href="{{url_for('contact')}}">Contact Us</a>
+                        <!-- <a class="btn btn-link" href="">Privacy Policy</a>
+                        <a class="btn btn-link" href="">Terms & Condition</a>
+                        <a class="btn btn-link" href="">Career</a> -->
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <p class="section-title text-white h5 mb-4">Gallery<span></span></p>
+                        <div class="row g-2">
+                            <div class="col-4">
+                                <img class="img-fluid" src="{{url_for('static',filename='img/gre.png')}}" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="{{url_for('static',filename='img/TOEFL.png')}}" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="{{url_for('static',filename='img/sop.png')}}" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="{{url_for('static',filename='img/research.png')}}" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="{{url_for('static',filename='img/university.png')}}" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="{{url_for('static',filename='img/lor.png')}}" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <p class="section-title text-white h5 mb-4">To Notice<span></span></p>
+                        <p style="justify-content: center;">The candidates must make an effort to meet the mentioned standards in order for the outcomes to be more favourable. </p>
+                        <div class="position-relative w-100 mt-3">
+                            <!-- <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
+                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">GAPrediction</a>, All Right Reserved. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://kceai.com/Rahul">Rahul Arumugam</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="lib/wow/wow.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+    <!-- <script src="lib/easing/easing.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <!-- <script src="lib/waypoints/waypoints.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    
+
+    <!-- <script src="lib/counterup/counterup.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"> </script>
+    <!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <!-- <script src="lib/isotope/isotope.pkgd.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <!-- <script src="lib/lightbox/js/lightbox.min.js"></script> -->
+    <script  src="{{ url_for('static', filename='lib/lightbox/js/lightbox.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <!-- <script src="js/main.js"></script> -->
+    <script  src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
 </html>
